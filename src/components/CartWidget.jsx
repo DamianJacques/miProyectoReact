@@ -1,13 +1,20 @@
+import { Button, Flex } from "@chakra-ui/react";
+import React from "react";
 
 const CartWidget = () => {
   return (
-    <div>
-      <span className="material-symbols-outlined">
-    garden_cart
-    </span>
-    <span>5</span>
+    <>
+    
+    <div className="cart">
+    <Flex alignContent="center" gap="2">  
+        <Button size="lg" variant="outline" colorScheme="blackAlpha">
+          <span className="material-symbols-outlined">shopping_cart</span>
+        </Button>      
+        </Flex>  
     </div>
-  )
-}
+    </>
+    
+  );
+};
 
-export default CartWidget 
+export default CartWidget;
