@@ -1,21 +1,24 @@
 import Item from "./Item";
-import { Container } from "@chakra-ui/react";
-const ItemList = ({ Zapatillas }) => {
+import { Container, Flex } from "@chakra-ui/react";
+const ItemList = ({ zapatillas }) => {
   return (
     <>
+    
+
       <Container maxW="container.sm" >
-        {Zapatillas?.map((Zapatilla) => (
+        {zapatillas?.map((zapatilla) => (
           <Item
-            key={Zapatilla.id}
-            id={Zapatilla.id}
-            nombre={Zapatilla.nombre}
-            descripcion={Zapatilla.descripcion}
-            precio={Zapatilla.precio}
-            stock={Zapatilla.stock}
-            categoria={Zapatilla.categoria}
+            key={zapatilla.id}
+            id={zapatilla.id}
+            nombre={zapatilla.nombre}
+            descripcion={zapatilla.descripcion}
+            precio={zapatilla.precio}
+            stock={zapatilla.stock}
+            categoria={zapatilla.categoria}
           />
         ))}
       </Container>
+    
     </>
   );
 };

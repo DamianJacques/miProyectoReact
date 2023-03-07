@@ -1,4 +1,4 @@
-import CartWidget from "./CartWidget";
+import CartWidget from "../components/CartWidget";
 import { Link } from "react-router-dom";
 import {
   Flex,
@@ -68,7 +68,9 @@ const NavBar = () => {
             </Menu>
           </Box>
           <Box p="2" color="White">
+            <Link to={"/cart"}>
             <CartWidget />
+            </Link>
           </Box>
 
           

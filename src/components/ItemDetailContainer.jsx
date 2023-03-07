@@ -1,34 +1,23 @@
 import ItemDetail from "./ItemDetail";
-import { useState } from "react";
-import Data from "../data.json";
-import { useParams } from "react-router";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { useEffect, useState } from "react";
 
 const ItemDetailContainer = () => {
-  const { id } = useParams();
-  const [Zapatillas, setZapatillas] = useState([]);
-  const getDatos = () => {
-    return new Promise((resolve, reject) => {
-      if (Data.length === 0) {
-        reject(new Error("No hay datos"));
-      }
-      setTimeout(() => {
-        const ZapatillasFilter = Data.filter((Zapatilla) => Zapatilla.id == id);
-        resolve(ZapatillasFilter);
-      }, 2000);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const db = getFirestore();
+    const zapasColeccion = collection(db, "zapatillas");
+    getDocs(zapasColeccion).then((querySnapshot) => {
+      const zapatillas = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setData(zapatillas);
     });
-  };
+  }, []);
 
-  async function fetchingData() {
-    try {
-      const datosFetched = await getDatos();
-      setBikes(datosFetched);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  fetchingData();
-  return <ItemDetail Zapatillas={Data} />;
+  return <ItemDetail zapatillas={data} />;
 };
+
 
 export default ItemDetailContainer;
